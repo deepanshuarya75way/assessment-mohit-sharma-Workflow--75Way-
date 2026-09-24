@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "workflow-hrms-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "WorkFlow HRMS — Enterprise Frontend (React + TypeScript + Vite)",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,7 +15,6 @@
     "@reduxjs/toolkit": "^2.12.0",
     "@tanstack/react-table": "^8.21.3",
     "graphql": "^16.14.2",
-    "groq-sdk": "^1.3.0",
     "js-cookie": "^3.0.8",
     "lucide-react": "^1.24.0",
     "react": "^19.2.7",

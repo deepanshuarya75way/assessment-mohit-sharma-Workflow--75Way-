@@ -1,32 +1,60 @@
-# React + TypeScript + Vite
+# WorkFlow HRMS — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React-based single page application for the WorkFlow Human Resource Management System.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Technology | Purpose |
+|---|---|
+| React 19 + TypeScript | UI Library with type safety |
+| Vite 8 | Build tooling & dev server |
+| React Router 7 | Client-side routing |
+| Tailwind CSS 4 | Utility-first styling |
+| Apollo Client 4 | GraphQL data fetching |
+| Redux Toolkit | Global state management |
+| Zustand | UI local state |
+| TanStack Table | Headless data grids |
+| Lucide React | SVG icon system |
+| Zod | Schema validation |
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev       # Starts on http://localhost:3000
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Project Structure
+
+```
+src/
+├── pages/           # Route-level page components (16 modules)
+├── components/      # Shared layout & UI components
+├── context/         # React Context providers (Session, User)
+├── store/           # Redux slices (auth)
+├── stores/          # Zustand stores (UI state)
+├── graphql/         # GraphQL queries, mutations, subscriptions
+├── lib/             # Core utilities (Apollo client, auth, mock data)
+├── types/           # TypeScript type declarations
+├── App.tsx          # Route configuration
+├── providers.tsx    # Context/store provider composition
+└── main.tsx         # Application entry point
+```
+
+## Environment Variables
+
+Create a `.env` file:
+
+```env
+VITE_GRAPHQL_URL=http://localhost:5000/graphql
+VITE_API_URL=http://localhost:5000
+```
+
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run linter |
