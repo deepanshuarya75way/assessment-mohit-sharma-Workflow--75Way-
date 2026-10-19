@@ -12,6 +12,9 @@ const environment = {
   groqApiKey: process.env.GROQ_API_KEY || '',
   nodeEnv: process.env.NODE_ENV || 'development',
   isProduction: process.env.NODE_ENV === 'production',
+  pineconeApiKey: process.env.PINECONE_API_KEY,
+pineconeIndexName: process.env.PINECONE_INDEX_NAME
+
 };
 
 export default environment;

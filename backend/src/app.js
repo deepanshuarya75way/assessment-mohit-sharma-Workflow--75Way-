@@ -9,6 +9,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import typeDefs from './graphql/typeDefs.js';
 import resolvers from './graphql/resolvers.js';
 import copilotRoutes from './routes/copilot.routes.js';
+import policyRoutes from './routes/policy.routes.js';
 
 export async function createApp() {
   const app = express();
@@ -30,6 +31,9 @@ export async function createApp() {
 
   // REST API routes
   app.use('/api', copilotRoutes);
+
+  //pincone rag policies
+  app.use('/api/policies', policyRoutes);
 
   // Error handler (must be registered last)
   app.use(errorHandler);
