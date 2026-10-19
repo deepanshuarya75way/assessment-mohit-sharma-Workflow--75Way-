@@ -1,0 +1,39 @@
+import pinecone from '../config/pinecone.js';
+
+const MODEL = 'llama-text-embed-v2';
+
+export async function searchPolicies(question, { companyId }) {
+  if (!question?.trim() || !companyId) {
+    return [];
+  }
+
+  const response = await pinecone.inference.embed(
+    MODEL,
+    [question],
+    {
+      inputType: 'query',
+      truncate: 'END',
+    }
+  );
+
+  const queryVector = response.data[0].values;
+
+  const namespace = pinecone
+    .index(process.env.PINECONE_INDEX_NAME)
+    .namespace(String(companyId));
+
+  const result = await namespace.query({
+    vector: queryVector,
+    topK: 5,
+    includeMetadata: true,
+  });
+
+  return (result.matches || [])
+    .filter((match) => match.metadata?.text)
+    .map((match) => ({
+      text: match.metadata.text,
+      fileName: match.metadata.fileName,
+      score: match.score,
+    }));
+}
+xxxxx
