@@ -58,7 +58,7 @@ ${policyContext || 'No sufficiently relevant policy chunks were found.'}`,
 
   const chatCompletion = await groq.chat.completions.create({
     model: 'qwen/qwen3.8-27b',
-    max_tokens: 1024,
+    max_tokens: 800,
     messages: [
       systemPrompt,
       ...messages.slice(-10),

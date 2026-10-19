@@ -26,15 +26,15 @@ export async function ingestPolicy({
   for (let i = 0; i < chunks.length; i += batchSize) {
     const batch = chunks.slice(i, i + batchSize);
 
-    const response = await pinecone.inference.embed(
-      MODEL,
-      batch,
-      {
-        inputType: 'passage',
-        truncate: 'END',
-      }
-    );
-
+  const response = await pinecone.inference.embed({
+  model: MODEL,
+  inputs: batch,
+  parameters: {
+    input_type: 'passage',
+    truncate: 'END',
+    dimension: DIMENSION,
+  },
+});
     for (let j = 0; j < batch.length; j++) {
       const values = response.data[j].values;
 
